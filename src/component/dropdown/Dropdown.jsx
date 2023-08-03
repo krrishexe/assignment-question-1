@@ -1,4 +1,7 @@
-const Dropdown = ({ options, onChange, selectedItem }) => {
+const Dropdown = ({ options, onChange, selectedItem, sendDataToParent  }) => {
+  
+  sendDataToParent(selectedItem);
+
   return (
     <select
       name="currency"

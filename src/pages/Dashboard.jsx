@@ -19,17 +19,23 @@ const Dashboard = () => {
   const [searchText, setSearchText] = useState("");
   const [selectedOrderDetails, setSelectedOrderDetails] = useState({});
   const [selectedOrderTimeStamps, setSelectedOrderTimeStamps] = useState({});
+  const [dataFromChild, setDataFromChild] = useState(null);
 
+  const handleDataFromChild = (data) => {
+    setDataFromChild(data);
+  };
+  console.log(dataFromChild);
   return (
     <div>
       <div className={styles.header}>
-        <HeaderTitle primaryTitle="Orders" secondaryTitle="5 orders" />
+        <HeaderTitle primaryTitle="Orders" secondaryTitle={`${mockData.header.returnedHits} orders`} />
         <div className={styles.actionBox}>
           <Search
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
           <Dropdown
+            sendDataToParent={handleDataFromChild}
             options={["GBP", "USD", "JPY", "EUR"]}
             onChange={(e) => setCurrency(e.target.value)}
             selectedItem={currency}
@@ -47,7 +53,7 @@ const Dashboard = () => {
             title="Selected Order Timestamps"
           />
         </div>
-        <List rows={mockData.results}/>
+        <List rows={mockData.results} dataFromChild={dataFromChild} />
       </div>
     </div>
   );
