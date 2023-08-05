@@ -8,6 +8,11 @@ import styles from "./List.module.css";
 
 const List = ({ rows , dataFromChild }) => {
   const currency = dataFromChild;
+
+  const handleOnClick =(id)=>{
+    // console.log(id)
+  }
+  
   return (
     <table className={styles.container}>
       <thead>
@@ -20,9 +25,9 @@ const List = ({ rows , dataFromChild }) => {
         </ListHeader>
       </thead>
       <tbody>
-        {rows.map((row,dataFromChild) => (
+        {rows.map((row) => (
           <ListRow>
-            <ListRowCell>{row["&id"]}</ListRowCell>
+            <ListRowCell onClick={handleOnClick(row["&id"])}>{row["&id"]}</ListRowCell>
             <ListRowCell>{row.executionDetails.buySellIndicator}</ListRowCell>
             <ListRowCell>{row.executionDetails.orderStatus}</ListRowCell>
             <ListRowCell>{row.timestamps.orderSubmitted}</ListRowCell>

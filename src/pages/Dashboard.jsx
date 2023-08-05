@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import SODContext from "../context/selectedOrderDetails/SODContext";
 
 // Data
 import mockData from "../assets/data.json";
-import timestamps from "../assets/timeStamps.json";
+// import timestamps from "../assets/timeStamps.json";
 
 // Components
 import Dropdown from "../component/dropdown/Dropdown";
@@ -17,14 +18,16 @@ import Card from "../component/card/Card";
 const Dashboard = () => {
   const [currency, setCurrency] = useState("EUR");
   const [searchText, setSearchText] = useState("");
-  const [selectedOrderDetails, setSelectedOrderDetails] = useState({});
+  // const [selectedOrderDetails, setSelectedOrderDetails] = useState({});
   const [selectedOrderTimeStamps, setSelectedOrderTimeStamps] = useState({});
   const [dataFromChild, setDataFromChild] = useState(null);
+
+  const {selectedOrderDetails} = useContext(SODContext)
 
   const handleDataFromChild = (data) => {
     setDataFromChild(data);
   };
-  console.log(dataFromChild);
+  // console.log(dataFromChild);
   return (
     <div>
       <div className={styles.header}>
