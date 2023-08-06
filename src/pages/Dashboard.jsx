@@ -15,6 +15,8 @@ import List from "../component/list/List";
 // Styles
 import styles from "./Dashboard.module.css";
 import Card from "../component/card/Card";
+import { Button } from "../stories/Button";
+import { Large } from "../stories/Button.stories";
 
 const Dashboard = () => {
   const [currency, setCurrency] = useState("EUR");
@@ -28,16 +30,24 @@ const Dashboard = () => {
   const handleDataFromChild = (data) => {
     setDataFromChild(data);
   };
-  // console.log(dataFromChild);
+
+  console.log(dataFromChild);
   return (
     <div>
       <div className={styles.header}>
+
+        {/* Solved ISSUE 1 */}
+
         <HeaderTitle primaryTitle="Orders" secondaryTitle={`${mockData.header.returnedHits} orders`} />
         <div className={styles.actionBox}>
           <Search
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
+          <Button primary size={Large} label={"Storybook"} />   
+
+          {/* Added storybook to button component || Solved Bonus Issue  */}
+
           <Dropdown
             sendDataToParent={handleDataFromChild}
             options={["GBP", "USD", "JPY", "EUR"]}
@@ -57,7 +67,7 @@ const Dashboard = () => {
             title="Selected Order Timestamps"
           />
         </div>
-        <List rows={mockData.results} dataFromChild={dataFromChild} />
+        <List rows={mockData.results} dataFromChild={dataFromChild} searchText={searchText} />
       </div>
     </div>
   );
